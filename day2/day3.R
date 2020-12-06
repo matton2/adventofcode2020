@@ -14,13 +14,13 @@ task3a <- task3 %>%
          hitTree = if_else(str_sub(path, start = pathPosition, end = pathPosition) == "#", TRUE, FALSE))
 
 
-sum(task3a$hitTree, na.rm = TRUE)
+partA <- sum(task3a$hitTree, na.rm = TRUE)
 
 # part 2
 
 path5Temp <- c()
 j <- 1
-for(i in 1:NROW(task3b)) {
+for(i in 1:NROW(task3)) {
   
   if(i != 1) {
     if(i %% 2 != 0) {
@@ -37,7 +37,7 @@ for(i in 1:NROW(task3b)) {
 
 task3b <- task3 %>% 
   mutate(path = paste0(X1, X1, X1, X1, X1, X1, X1, X1, X1, X1, X1, X1),
-         path = paste0(path, path, path, path), 
+         path = paste0(path, path, path, path,path,path,path,path,path), 
          pathPosition1 = lag((row_number() * 1)  + 1),
          pathPosition2 = lag((row_number() * 3) + 1),
          pathPosition3 = lag((row_number() * 5) + 1),
@@ -50,14 +50,10 @@ task3b <- task3 %>%
          hitTree5 = if_else(str_sub(path, start = pathPosition5, end = pathPosition5) == "#", TRUE, FALSE))
 
 
-
-
-
-
 path1 <- sum(task3b$hitTree1, na.rm = TRUE)
 path2 <- sum(task3b$hitTree2, na.rm = TRUE)
 path3 <- sum(task3b$hitTree3, na.rm = TRUE)
 path4 <- sum(task3b$hitTree4, na.rm = TRUE)
 path5 <- sum(task3b$hitTree5, na.rm = TRUE)
 
-path1*path2*path3*path4*path5
+partB <- path1*path2*path3*path4*path5
