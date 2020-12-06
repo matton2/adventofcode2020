@@ -48,7 +48,7 @@ for(i in 1:NCOL(task6b)) {
     
     for(k in 1:length(task6b[,i][[1]][[1]])) {
       
-      there <- str_detect(task6b[,i][[1]][[1]][[k]])
+      there <- str_detect(task6b[,i][[1]][[1]][[k]], searchLetter)
       
       temp <- c(temp, there)
       
@@ -62,5 +62,3 @@ for(i in 1:NCOL(task6b)) {
   
   countOfLetters <- c(countOfLetters, letterCount)
 }
-  
-  
