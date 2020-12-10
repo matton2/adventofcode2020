@@ -88,11 +88,11 @@ part2 <- function(data, pream) {
   
   for(m in 1:length(data)) {
     for(n in m:length(data)) {
-      browser()
-      selected <- c(data[[m:m+n]])
-      sum <- sum(selected)
+      found <- data[m:n]
+      sum <- sum(found)
+      #print(sum)
       if(brokenOne == sum) {
-        return(selected)
+        return(found)
       }
     }
   }
@@ -102,4 +102,7 @@ part2 <- function(data, pream) {
 
 
 part2(day9Ex, 5)
-part2(day9, 25)
+part2Ans <- part2(day9, 25)
+
+finalPart2 <- min(part2Ans) + max(part2Ans)
+finalPart2

@@ -62,9 +62,13 @@ part1 <- length(totalBags) - 1
 
 part2Example <- read_lines('day7/day7Part2Example.txt')
 
-numberOfBags <- function(rules, color) {
+library(memoise)
+
+numberOfBags <- memoise(function(rules, color) {
   
   colorRow <- NA
+  
+  bagsInThisRow <- NA
   
   for(i in 1:length(rules)) {
     
@@ -93,14 +97,17 @@ numberOfBags <- function(rules, color) {
             bagsInThisRow <- bagsInThisRow + bagsInThisRow*bagsInPrevRow
             
             print(bagsInThisRow)
+            print(nextColor)
           }
           
         }
+        
         
       } else {
         
         return(0)
       }
+      
     }
 
   }
@@ -109,8 +116,11 @@ numberOfBags <- function(rules, color) {
   #return(bags)
   
 }
+)
+numColors <- c()
+results <- numberOfBags(part2Example, 'shiny gold')
 
-numberOfBags(part2Example, 'shiny gold')
+?memoise
 
 numberOfBags(rules, 'shiny gold')
 
