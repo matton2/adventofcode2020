@@ -166,5 +166,7 @@ day14ex2 <- read_lines('day14/day14ex2.txt')
 
 example <- part2(day14ex2)
 print(sum(example$number), digits = 22)
+tictoc::tic()
 part2Final <- part2(day14)
 print(sum(part2Final$number), digits = 22)
+tictoc::toc()
