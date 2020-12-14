@@ -547,6 +547,8 @@ boatWayPoint <- R6Class('boat',
                 )
 )
 
+#----
+
 # partBoatEx <- boatWayPoint$new(10,1)
 # 
 # for(i in 1:length(day12ex)) {
