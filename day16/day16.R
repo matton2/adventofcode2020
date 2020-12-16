@@ -1,7 +1,7 @@
 library(tidyverse)
 
 rules <- read_lines('day16/day16.txt', n_max = 20)
-rules
+#rules
 
 tickets <- read_csv('day16/day16.txt', skip = 25, col_names = FALSE)
 
