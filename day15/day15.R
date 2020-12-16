@@ -41,6 +41,7 @@ input <- c(19,20,14,0,9,1)
 part1(input, 2020)
 
 # this runs really, really slow, i am guessing it would take years to solve
+# I want to update this using data.table and the setkey property.  This would turn the data.table into a hash table with a search time of log(n) i think.
 part1Algo1<- part1(input, 30000000)
 
 part2 <- function(numbers, target) {
