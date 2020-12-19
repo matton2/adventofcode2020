@@ -7,70 +7,16 @@ example2 <- "1 + (2 * 3) + (4 * (5 + 6))"
 
 example3 <- "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2"
 
-eval(parse(text = example3))
+day18 <- read_lines('day18/day18.txt')
 
-weirdMath <- function(mathString) {
-  
-  parsedString <- str_split(mathString, " ")[[1]]
-  
-  tempNum <- 0
-  
-  tempNum <- eval(parse(text = paste(parsedString[[1]],
-                                     parsedString[[2]],
-                                     parsedString[[3]],
-                                     collapse = "")))
-  
-  if(length(parsedString) > 3) {
-    for(i in seq(4,length(parsedString),2)) {
-      tempNum <- 
-        eval(parse(text = paste(tempNum,
-                                parsedString[[i]],
-                                parsedString[[i+1]],
-                                collapse = "")))
-    }
-  }
-  
-  return(tempNum)
-  
-  
-}
 
-weirdMath(example)
+# there are only + and * in the file.  since + and - both operate left to right, we can switch all the * to - but actually have the - operate as the *
+`-` <- `*`
+input <- gsub("\\*", "\\-", day18)
+part1 <- sum(eval(as.call(c(c, parse(text = input)))))
 
-# i cant figure out how to get the para thing to operate.  I was thinking of creating my own AST but i am not sure i know how to do that....
-paraMath <- function(fullMathString) {
-  
-  someNumber <- 0
-  # are there any parathensis
-  
-  parsedString <- str_split(fullMathString, " ")[[1]]
-  
-  for(i in 1:length(parsedString)) {
-    
-    
-    
-  }
-  
-  if(any(str_detect(fullMathString, "\\("))) {
-    #operate inside the paras first, and then add that to the rest
-    
-    if(str_count(fullMathString, "\\(") == 1) {
-      
-      open <- str_locate(fullMathString, "\\(")[[1]]
-      closed <- str_locate(fullMathString, "\\)")[[1]]
-      
-      first <- str_sub(fullMathString, (open+1), (closed-1))
-      
-      
-    }
-    
-  } else {
-    someNumber <- weirdMath(fullMathString)
-  }
-  
-  
-  return(someNumber)
-  
-}
-
-paraMath(example)
+# we will use the same input string that we modified above and now switch the + for * and make the * operate as +, kinda crazy, right?
+`*` <- `+`
+input2 <- gsub("\\+", "\\*", input)
+part2 <- sum(eval(as.call(c(c, parse(text = input2)))))
+format(part2, scientific = FALSE)
